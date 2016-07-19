@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.eventshop.eventshoplinux.constant.Constant.DS_JSON_LOC;
+
 /**
  * Created by aravindh on 5/13/15.
  */
@@ -226,9 +228,9 @@ public class EmageRoute extends RouteBuilder{
                                          if(!file.exists()) {
                                              file.createNewFile();
                                          }
-                                         mapper.writeValue(new File(Config.getProperty("datasourceJsonLoc") + dsIDFilename), emg);
+                                         mapper.writeValue(new File(DS_JSON_LOC + dsIDFilename), emg);
                                      } else {
-                                         mapper.writeValue(new File(Config.getProperty("datasourceJsonLoc") + exchange.getIn().getHeader("dsID") + "_layer" + emageLayerCnt + ".json"), emg);
+                                         mapper.writeValue(new File(DS_JSON_LOC + exchange.getIn().getHeader("dsID") + "_layer" + emageLayerCnt + ".json"), emg);
                                      }
                                      System.out.println("Done Writting layer"+emageLayerCnt);
 
@@ -343,7 +345,7 @@ public class EmageRoute extends RouteBuilder{
 //                                int emageLayerCnt=0;
 //                                for(Emage emg : emageList){
 //                                    ObjectMapper mapper = new ObjectMapper();
-//                                    mapper.writeValue(new File(Config.getProperty("datasourceJsonLoc")+exchange.getIn().getHeader("dsID")+"_layer"+emageLayerCnt+".json"), emg);
+//                                    mapper.writeValue(new File(DS_JSON_LOC+exchange.getIn().getHeader("dsID")+"_layer"+emageLayerCnt+".json"), emg);
 //                                    System.out.println("Done Writting layer"+emageLayerCnt);
 //                                    emageLayerCnt++;
 //
@@ -364,7 +366,7 @@ public class EmageRoute extends RouteBuilder{
                         LOGGER.info("Done...");
                     }
                 })
-                .to("file:" + Config.getProperty("datasourceJsonLoc") + "?noop=true&charset=iso-8859-1")
+                .to("file:" + DS_JSON_LOC + "?noop=true&charset=iso-8859-1")
                 .process(new Processor() {
                     @Override
                     public void process(Exchange exchange) throws Exception {

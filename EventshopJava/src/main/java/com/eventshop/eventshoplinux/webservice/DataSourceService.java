@@ -19,6 +19,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import static com.eventshop.eventshoplinux.constant.Constant.ZK_URI;
+
 /**
  * Created by abhisekmohanty on 4/8/15.
  */
@@ -51,7 +53,7 @@ public class DataSourceService {
             boolean enabled = dataSourceDao.getDsStatus(dataSource.getID());
             if (enabled)
                 disableDataSource(dataSource);
-            ZkClient zkClient = new ZkClient("localhost:2181", 10000);
+            ZkClient zkClient = new ZkClient(ZK_URI, 10000);
             zkClient.deleteRecursive(ZkUtils.getTopicPath("ds" + dataSource.getID()));
             String result = dataSourceDao.deleteDatasource(dataSource.getID());
             //Update Data Cache

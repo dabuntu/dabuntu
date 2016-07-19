@@ -25,6 +25,10 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
+import static com.eventshop.eventshoplinux.constant.Constant.ZK_HOST;
+import static com.eventshop.eventshoplinux.constant.Constant.ZK_PORT;
+import static com.eventshop.eventshoplinux.constant.Constant.ZK_URI;
+
 /**
  * Created by nandhiniv on 7/26/15.
  */
@@ -202,8 +206,8 @@ public class DataFormatRoute extends RouteBuilder {
 
                         DataSource ds = exchange.getIn().getHeader("datasource", DataSource.class);
                         String dsId = "ds" + ds.srcID;
-                        String uri = "kafka:" + Config.getProperty("kafkaURI") + "?topic=" + dsId + "&zookeeperHost="
-                                + Config.getProperty("zkHostName") + "&zookeeperPort=" + Config.getProperty("zkPort")
+                        String uri = "kafka:" + ZK_URI + "?topic=" + dsId
+                                + "&zookeeperHost=" + ZK_HOST + "&zookeeperPort=" + ZK_PORT
                                 + "&batchSize=" + Integer.parseInt(Config.getProperty("kafkaReadBatchSize")) + "&groupId=group1";
                         CamelContext context = getContext();
                         LOGGER.info("Kafka Started at : "+ new Date());

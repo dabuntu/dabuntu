@@ -135,7 +135,7 @@ public class KafkaToMongoRoute extends RouteBuilder {
                         }
 
                         String dsId = dataSource.getSrcID();
-                        String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("DSDB") + "&collection=ds" + dsId + "&operation=insert";
+                        String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("mongoDB") + "&collection=ds" + dsId + "&operation=insert";
                         exchange.getOut().setHeader("mPath", mongoPath);
                         exchange.getOut().setBody(dbObjectList);
                     }
@@ -308,7 +308,7 @@ public class KafkaToMongoRoute extends RouteBuilder {
                         }
 
                         String dsId = dataSource.getSrcID();
-                        String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("DSDB") + "&collection=ds" + dsId + "&operation=insert";
+                        String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("mongoDB") + "&collection=ds" + dsId + "&operation=insert";
                         exchange.getOut().setHeader("mPath", mongoPath);
                         exchange.getOut().setBody(dbObjectList);
 
@@ -481,7 +481,7 @@ public class KafkaToMongoRoute extends RouteBuilder {
 
                                      // }
                                      String dsId = dataSource.getSrcID();
-                                     String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("DSDB") + "&collection=ds" + dsId + "&operation=insert";
+                                     String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("mongoDB") + "&collection=ds" + dsId + "&operation=insert";
                                      exchange.getOut().setHeader("mPath", mongoPath);
                                      exchange.getOut().setBody(dbObjectList);
 
@@ -518,7 +518,7 @@ public class KafkaToMongoRoute extends RouteBuilder {
                                              }
                                              //    System.out.println("Inserting tweets with geo location. Tweet size is " + sttList.size());
                                              String dsId = dataSource.getSrcID();
-                                             String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("DSDB") + "&collection=ds" + dsId + "&operation=insert";
+                                             String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("mongoDB") + "&collection=ds" + dsId + "&operation=insert";
                                              System.out.println("mPath while insert in file route is " + mongoPath);
                                              exchange.getOut().setHeader("mPath", mongoPath);
                                              exchange.getOut().setBody(sttList);
@@ -569,7 +569,7 @@ public class KafkaToMongoRoute extends RouteBuilder {
                                     }
                                     exchange.getOut().setBody(jObj.toString());
                                     String dsId = dataSource.getSrcID();
-                                    String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("DSDB") + "&collection=ds" + dsId + "&operation=insert";
+                                    String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("mongoDB") + "&collection=ds" + dsId + "&operation=insert";
                                     exchange.getOut().setHeader("mPath", mongoPath);
                                     LOGGER.info("Direct Load done...");
                                 }

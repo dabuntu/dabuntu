@@ -145,7 +145,7 @@ public class MongoRoute extends RouteBuilder {
                         LOGGER.info("Query : {}", query);
 
                         String dsId = ds.getSrcID();
-                        String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("DSDB") + "&collection=ds" + dsId + "&operation=findAll";
+                        String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("mongoDB") + "&collection=ds" + dsId + "&operation=findAll";
                         exchange.getOut().setHeader("mPath", mongoPath);
 
                         exchange.getOut().setBody(query);

@@ -260,7 +260,7 @@ public class VisualRoute extends RouteBuilder {
 //
 //                        }
 
-                        String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("DSDB") + "&collection=ds" + ds.getSrcID() + "&operation=insert";
+                        String mongoPath = "mongodb:mongoBean?database=" + Config.getProperty("mongoDB") + "&collection=ds" + ds.getSrcID() + "&operation=insert";
                         exchange.getOut().setHeader("mPath", mongoPath);
                         exchange.getOut().setBody(sttList);
                         String operation = "avg";

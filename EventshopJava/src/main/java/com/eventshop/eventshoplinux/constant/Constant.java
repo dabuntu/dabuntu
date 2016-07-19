@@ -273,5 +273,12 @@ public class Constant {
 	public static final String aqiCOL = RESOURCEDIR + "/aqi_col_mat";
 	public static final String aqiMASK = RESOURCEDIR + "/aqi_mask.png";
 
-	public static final String datasourceJsonLoc = Config.getProperty("datasourceJsonLoc");
+	public static final String QUERY_JSON_LOC =  Config.getProperty(CONTEXT) + "temp/queries/";
+	public static final String DS_JSON_LOC = Config.getProperty(CONTEXT) + "temp/ds/";
+
+	// zookeeper constants
+	public static final String ZK_HOST = Config.getProperty("zkHostName");
+	public static final String ZK_PORT = Config.getProperty("zkPort");
+	public static final String ZK_URI = ZK_HOST + ":" + ZK_PORT;
+
 }

@@ -2,6 +2,7 @@ package com.eventshop.eventshoplinux.kafka;
 
 import com.eventshop.eventshoplinux.DAO.datasource.DataSourceManagementDAO;
 import com.eventshop.eventshoplinux.DataCache;
+import com.eventshop.eventshoplinux.constant.Constant;
 import com.eventshop.eventshoplinux.domain.datasource.DataSource;
 import com.eventshop.eventshoplinux.util.commonUtil.Config;
 import kafka.javaapi.producer.Producer;
@@ -105,7 +106,7 @@ public class TwitterProducer {
         twitterStream.addListener(listener);
         twitterStream.filter(query);
         //Start the consumer
-        TwitterMongoConsumer tmc = new TwitterMongoConsumer(Config.getProperty("zkURI"), "group1", Config.getProperty("twitterInitialTopic"));
+        TwitterMongoConsumer tmc = new TwitterMongoConsumer(Constant.ZK_URI, "group1", Config.getProperty("twitterInitialTopic"));
         logger.debug("call tmc.run");
         tmc.run(1, enabledSources);
     }
