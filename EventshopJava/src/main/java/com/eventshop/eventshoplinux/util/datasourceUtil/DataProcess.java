@@ -62,7 +62,7 @@ public class DataProcess implements Runnable {
 
 	public static void main(String[] args) {
 		String imgBasePath = Config.getProperty("context") + Constant.RESULT_DS;
-		String tempDir = Config.getProperty("tempDir");
+		String tempDir = Constant.TEMP_DIR;
 
 		FrameParameters fp = new FrameParameters(1 * 6 * 60 * 1000, 0, 2, 2,
 				24, -125, 50, -66);// CHANGED TO 6 MINUTES for testing...change

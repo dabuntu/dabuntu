@@ -336,7 +336,7 @@ public class TwitterWrapper extends Wrapper {
 
 	public void getPopulation() throws IOException {
 		BufferedReader br1 = new BufferedReader(new FileReader(
-				Config.getProperty("tempDir") + "visual/newPopulation.txt"));
+				Constant.TEMP_DIR + "visual/newPopulation.txt"));
 		String myline = "";
 		// double startLat = 24.5;
 
@@ -494,7 +494,7 @@ public class TwitterWrapper extends Wrapper {
 
 	public static void main(String[] args) {
 		String imgBasePath = Config.getProperty("context") + Constant.RESULT_DS;
-		String tempDir = Config.getProperty("tempDir");
+		String tempDir = Constant.TEMP_DIR;
 		String url = Config.getProperty("twtrURL");
 		FrameParameters fp = new FrameParameters(1 * 60 * 60 * 1000, 0, 2, 2,
 				24, -125, 50, -66);// CHANGED TO 6 MINUTES for testing...change
@@ -641,7 +641,7 @@ public class TwitterWrapper extends Wrapper
 
 	public static void main(String[] args) {
 		String imgBasePath = Config.getProperty("context") + Constant.RESULT_DS;
-		String tempDir = Config.getProperty("tempDir");
+		String tempDir = Constant.TEMP_DIR;
 		String url = Config.getProperty("twtrURL");
 		FrameParameters fp = new FrameParameters(1 * 60 * 60 * 1000, 0, 2, 2, 24, -125, 50, -66);//CHANGED TO 6 MINUTES for testing...change back !!!!*****
 		FrameParameters fpFinal = new FrameParameters(5 * 60 * 1000, 0, 0.1, 0.1, 24, -125, 50, -66);
@@ -940,7 +940,7 @@ public class TwitterWrapper extends Wrapper
 	}
 
 	public void getPopulation() throws IOException {
-		BufferedReader br1 = new BufferedReader(new FileReader(Config.getProperty("tempDir") + "visual/newPopulation.txt"));
+		BufferedReader br1 = new BufferedReader(new FileReader(Constant.TEMP_DIR + "visual/newPopulation.txt"));
 		String myline = "";
 		//double startLat = 24.5;
 

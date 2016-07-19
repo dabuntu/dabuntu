@@ -2,7 +2,6 @@ package com.eventshop.eventshoplinux.util.commonUtil;
 
 import static com.eventshop.eventshoplinux.constant.Constant.CONTEXT;
 import static com.eventshop.eventshoplinux.constant.Constant.PATH_DS;
-import static com.eventshop.eventshoplinux.constant.Constant.TEMPDIR;
 import static com.eventshop.eventshoplinux.constant.Constant.json;
 
 import java.awt.Color;

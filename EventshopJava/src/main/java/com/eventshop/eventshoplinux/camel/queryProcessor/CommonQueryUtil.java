@@ -190,7 +190,7 @@ public class CommonQueryUtil {
 
             // String filename = "\""+ dataFolderPath + "ds" + src.srcID + "_" +
             // src.srcName + "\"";
-            String filename = "\"" + Config.getProperty("tempDir") + "ds" + src.srcID + "\"";
+            String filename = "\"" + Constant.TEMP_DIR + "ds" + src.srcID + "\"";
 
             if (src.srcVarName == null)
                 cc += ("\tEmageIngestor ds" + src.srcID + "(" + filename + ");\n");
@@ -200,7 +200,7 @@ public class CommonQueryUtil {
 
         for (String querySrc : querySources) {
             ;
-            String filename = "\"" + Config.getProperty("tempDir") + "queries/" + "Q" + masterQueryID + "_" + querySrc.substring(1) + "\"";
+            String filename = "\"" + Constant.TEMP_DIR + "queries/" + "Q" + masterQueryID + "_" + querySrc.substring(1) + "\"";
 
             cc += ("\tEmageIngestor " + "Q" + masterQueryID + "_" + querySrc + "(" + filename + ");\n");
         }
@@ -270,7 +270,7 @@ public class CommonQueryUtil {
 
             // String filename = "\""+ dataFolderPath + "ds" + src.srcID + "_" +
             // src.srcName + "\"";
-            String filename = "\"" + Config.getProperty("tempDir") + "ds" + src.srcID + "\"";
+            String filename = "\"" + Constant.TEMP_DIR + "ds" + src.srcID + "\"";
 
             if (src.srcVarName == null)
                 cc += ("\tEmageIngestor ds" + src.srcID + "(" + filename + ");\n");

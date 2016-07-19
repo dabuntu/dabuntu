@@ -58,7 +58,7 @@
 //         for (File file : fList) {
 //             if (file.isFile()) {
 //                 try {
-//                     commonQueryUtil.readEmageFileAndCreateBin(file, Config.getProperty("tempDir") + "ds"
+//                     commonQueryUtil.readEmageFileAndCreateBin(file, Constant.TEMP_DIR + "ds"
 //                             + file.getName().substring(0, file.getName().indexOf(".")));
 //                 } catch (IOException e) {
 //                     e.printStackTrace();
@@ -126,7 +126,7 @@
 
 // //                        assert result.equals("Q1_1");
 
-//                             String resultFilename = Config.getProperty("tempDir") + "queries/Q" + masterQueryID + ".json";
+//                             String resultFilename = Constant.TEMP_DIR + "queries/Q" + masterQueryID + ".json";
 //                             File resultFile = new File(resultFilename);
 //                             File outputFile = new File(classLoader.getResource("output/" + file.getName() + ".json").getFile());
 
@@ -153,7 +153,7 @@
 
 //     private void cleanup() {
 
-// //        File jsonFile = new File(Config.getProperty("tempDir") + "queries/Q" + masterQueryID + ".json");
+// //        File jsonFile = new File(Constant.TEMP_DIR + "queries/Q" + masterQueryID + ".json");
 // //        jsonFile.delete();
 
 //         File dir = new File(Config.getProperty("context") + "proc/Debug/");

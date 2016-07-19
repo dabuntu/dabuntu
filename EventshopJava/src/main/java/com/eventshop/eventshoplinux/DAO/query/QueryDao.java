@@ -2,6 +2,7 @@ package com.eventshop.eventshoplinux.DAO.query;
 
 
 import com.eventshop.eventshoplinux.DAO.BaseDAO;
+import com.eventshop.eventshoplinux.constant.Constant;
 import com.eventshop.eventshoplinux.model.Emage;
 import com.eventshop.eventshoplinux.model.Query;
 import com.eventshop.eventshoplinux.util.commonUtil.Config;
@@ -139,7 +140,7 @@ public class QueryDao extends BaseDAO {
 
     public Emage getQueryEmage(int Qid) {
         Emage emage = new Emage();
-        String qFilePath = Config.getProperty("tempDir") + "/queries/" + "Q" + Qid + ".json";
+        String qFilePath = Constant.TEMP_DIR + "/queries/" + "Q" + Qid + ".json";
 		File tempFile = new File(qFilePath);
         if (tempFile.exists()) {
             ObjectMapper mapper = new ObjectMapper();

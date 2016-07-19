@@ -1,6 +1,6 @@
 package com.eventshop.eventshoplinux.domain.datasource.emageiterator;
 
-import static com.eventshop.eventshoplinux.constant.Constant.TEMPDIR;
+import static com.eventshop.eventshoplinux.constant.Constant.TEMP_DIR;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
@@ -346,9 +346,9 @@ public class CSVFieldEmageIterator extends EmageIterator {
 		// Save the image on a file.
 		try {
 			System.out
-					.println(Config.getProperty(TEMPDIR) + imageName + ".jpg");
+					.println(TEMP_DIR + imageName + ".jpg");
 			ImageIO.write(rectImage, "jpg",
-					new File(Config.getProperty(TEMPDIR) + imageName + ".jpg"));
+					new File(TEMP_DIR + imageName + ".jpg"));
 
 		} catch (IOException e) {
 			log.error(e.getMessage());

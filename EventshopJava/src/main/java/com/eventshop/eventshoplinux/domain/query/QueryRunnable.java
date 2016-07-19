@@ -59,7 +59,7 @@ public class QueryRunnable implements Runnable {
 		contextPath = context;
 		if (contextPath == "")
 			contextPath = Config.getProperty(CONTEXT);
-		dataFolderPath = Config.getProperty(TEMPDIR);
+		dataFolderPath = TEMP_DIR;
 
 		queriedSources = new ArrayList<DataSource>();
 		queryCC = new ArrayList<String>();

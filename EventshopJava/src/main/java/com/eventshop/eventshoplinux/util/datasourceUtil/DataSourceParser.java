@@ -33,14 +33,14 @@ public class DataSourceParser {
 
 	public DataSourceParser(CamelContext camelContext) {
 		context = Config.getProperty("context");
-		tempDir = Config.getProperty("tempDir");
+		tempDir = Constant.TEMP_DIR;
 		this.camelContext = camelContext;
 	}
 
 	// public void init()
 	// {
 	// context = Config.getProperty("context");
-	// tempDir = Config.getProperty("tempDir");
+	// tempDir = Constant.TEMP_DIR;
 	// }
 
 	public DataProcess processData(DataSource src) {

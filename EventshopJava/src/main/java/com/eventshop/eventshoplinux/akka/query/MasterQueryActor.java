@@ -201,12 +201,12 @@ public class MasterQueryActor extends UntypedConsumerActor {
             finalEmage.setColors(new ArrayList<>());
         }
         if (finalEmage != null) {
-            File file = new File(Config.getProperty("tempDir") + "/queries/" + "Q" + masterQueryID + ".json");
+            File file = new File(Constant.TEMP_DIR + "/queries/" + "Q" + masterQueryID + ".json");
             if (!file.exists()) {
                 file.createNewFile();
             }
             ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(new File(Config.getProperty("tempDir") + "/queries/" + "Q" + masterQueryID + ".json"), finalEmage);
+            mapper.writeValue(new File(Constant.TEMP_DIR + "/queries/" + "Q" + masterQueryID + ".json"), finalEmage);
 
         }
     }

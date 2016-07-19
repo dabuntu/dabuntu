@@ -32,7 +32,7 @@ public class QueryHelper {
 	int aggID = 0;
 	String context = "";
 	String queryJSONText = "";
-	String tempDir = Config.getProperty(TEMPDIR);
+	String tempDir = TEMP_DIR;
 
 	// FrameParameters finalResolution = null;
 	// String opName;

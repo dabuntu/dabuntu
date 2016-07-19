@@ -251,7 +251,8 @@ public class MongoRoute extends RouteBuilder {
                         LOGGER.info("{}", System.currentTimeMillis());
                         LOGGER.info("{}", new Date());
                         final String body = exchange.getIn().getBody(String.class);
-                        System.out.println("STT:"+body);
+                        if(body.isEmpty())
+                            System.out.println("STT:"+body);
                         JSONObject obj = new JSONObject("{ \"list\" : " + body + "}");
 //                        LOGGER.info("{ \"list \" :" + exchange.getIn().getBody(String.class) + "}");
                         List<MongoResponse> list = new ArrayList<MongoResponse>();
@@ -386,7 +387,8 @@ public class MongoRoute extends RouteBuilder {
                                     for (int j = 0; j < grid.get(i).size(); j++) {
                                         val += (grid.get(i).get(j));
                                     }
-                                    avg = val / grid.get(i).size();
+                                    if(grid.get(i).size() >0)
+                                        avg = val / grid.get(i).size();
                                     outputList.add(avg);
                                 }
                             } else if (operation.equalsIgnoreCase("count")) {

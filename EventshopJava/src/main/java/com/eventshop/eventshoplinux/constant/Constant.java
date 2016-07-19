@@ -54,7 +54,7 @@ public class Constant {
 	public static final String SELECT_DSMSTR_QRY = "SELECT dm.dsmaster_id, dm.dsmaster_title,dm.dsmaster_creator FROM Datasource_Master dm WHERE dm.dsmaster_creator=?";
 	public static final String SLCT_DSMSTR_DSNAMES_QRY = "SELECT dm.dsmaster_title FROM Datasource_Master dm WHERE dm.dsmaster_creator=?";
 	public static final String SELECT_USERMSTR_QRY = "SELECT um.user_id,um.user_fullname,um.user_email,um.user_authen_key,rm.role_type,um.user_status,um.user_last_accessd,um.user_role_id FROM tbl_User_Master um,tbl_Role_Master rm WHERE um.user_role_id=rm.role_id";
-	public static final String TEMPDIR = "tempDir";
+
 	public static final String SELECT_QRYMSTR = "SELECT query_id,query_name,query_status FROM Query_Master WHERE query_creator_id=?";
 	public static final String SLCT_QRYMSTR_QYNAMES_QRY = "SELECT query_name FROM Query_Master WHERE query_creator_id=?";
 	public static final String UPDATE_USERMSTR_STATUS_QRY = "UPDATE tbl_User_Master SET user_status=? WHERE user_id=?";
@@ -259,9 +259,13 @@ public class Constant {
 	public static final String qryAddErrCode = "qryAddErrCode";
 	public static final String json = ".json";
 
+	// temp path
+	public static final String TEMP_DIR = Config.getProperty(CONTEXT) + "temp/";
+	public static final String QUERY_JSON_LOC =  Config.getProperty(CONTEXT) + "temp/queries/";
+	public static final String DS_JSON_LOC = Config.getProperty(CONTEXT) + "temp/ds/";
+
 	// resource for pre-sample data source
-	public static final String RESOURCEDIR = Config.getProperty(TEMPDIR)
-			+ "/resource/";
+	public static final String RESOURCEDIR = TEMP_DIR + "/resource/";
 	public static final String csvArrayURI = RESOURCEDIR + "/csv_array_usa";
 	public static final String csvFieldURI = RESOURCEDIR + "/csv_field_1_2_3";
 	public static final String pollenURI = RESOURCEDIR + "/pollen_map.gif";
@@ -273,8 +277,6 @@ public class Constant {
 	public static final String aqiCOL = RESOURCEDIR + "/aqi_col_mat";
 	public static final String aqiMASK = RESOURCEDIR + "/aqi_mask.png";
 
-	public static final String QUERY_JSON_LOC =  Config.getProperty(CONTEXT) + "temp/queries/";
-	public static final String DS_JSON_LOC = Config.getProperty(CONTEXT) + "temp/ds/";
 
 	// zookeeper constants
 	public static final String ZK_HOST = Config.getProperty("zkHostName");

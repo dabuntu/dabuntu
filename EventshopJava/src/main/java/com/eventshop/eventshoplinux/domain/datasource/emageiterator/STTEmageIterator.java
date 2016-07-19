@@ -22,6 +22,8 @@ import com.eventshop.eventshoplinux.util.datasourceUtil.DataProcess;
 import com.eventshop.eventshoplinux.util.datasourceUtil.wrapper.TwitterWrapper;
 import com.eventshop.eventshoplinux.util.datasourceUtil.wrapper.Wrapper;
 
+import static com.eventshop.eventshoplinux.constant.Constant.TEMP_DIR;
+
 public class STTEmageIterator extends EmageIterator {
 	// Type of the input STTPoint iterator
 	// 0. Wrapper
@@ -328,7 +330,7 @@ public class STTEmageIterator extends EmageIterator {
 		// String imgBasePath =
 		// "C:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 7.0\\webapps\\eventshop\\temp\\ds\\";
 		String imgBasePath = Config.getProperty("context") + Constant.RESULT_DS;
-		String tempDir = Config.getProperty("tempDir");
+		String tempDir = TEMP_DIR;
 		String url = Config.getProperty("twtrURL");
 		FrameParameters fp = new FrameParameters(6 * 3600 * 1000, 0, 2, 2, 24,
 				-125, 50, -66);// CHANGED TO 6 MINUTES for testing...change back

@@ -1,5 +1,6 @@
 package com.eventshop.eventshoplinux.webservice;
 
+import com.eventshop.eventshoplinux.constant.Constant;
 import com.eventshop.eventshoplinux.model.MapSnapshot;
 import com.eventshop.eventshoplinux.util.commonUtil.Config;
 import com.google.gson.JsonObject;
@@ -126,7 +127,7 @@ public class SnapWebService {
 
             long currentTime = System.currentTimeMillis();
 
-            File f = new File(Config.getProperty("tempDir")+"/query_images/"+type+id+"_"+currentTime+".png");
+            File f = new File(Constant.TEMP_DIR+"/query_images/"+type+id+"_"+currentTime+".png");
 
             FileUtils.copyFile(screen, f);
 
