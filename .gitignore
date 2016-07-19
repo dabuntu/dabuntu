@@ -7,4 +7,5 @@ EventshopJava/release.properties
 EventshopJava/dependency-reduced-pom.xml
 EventshopJava/buildNumber.properties
 EventshopJava/.mvn/timing.properties
+EventshopJava/src/main/resources/config.properties
 .idea
