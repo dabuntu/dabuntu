@@ -27,7 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.eventshop.eventshoplinux.constant.Constant.ALERT_INTERVAL;
-
+import static com.eventshop.eventshoplinux.constant.Constant.DS_JSON_LOC;
+import static com.eventshop.eventshoplinux.constant.Constant.QUERY_JSON_LOC;
 
 
 /**
@@ -138,10 +139,10 @@ public class AlertProcess implements Runnable {
 		alertMax = Integer.parseInt(alertMax1);
 		alertSrcType=srcType;
 		if (alertSrcType.equals("Q")){
-			alertEmagePath = Config.getProperty("queryJsonLoc") + "Q" + alertSrcId + ".json";
+			alertEmagePath = QUERY_JSON_LOC + "Q" + alertSrcId + ".json";
 
 		}else if (alertSrcType.equals("ds")){
-			alertEmagePath = Config.getProperty("datasourceJsonLoc")+alertSrcId+".json";
+			alertEmagePath = DS_JSON_LOC +alertSrcId+".json";
 		}
 		factory = new ConnectionFactory();
 	    factory.setHost("rabbitmqHOSt");
@@ -187,10 +188,10 @@ public class AlertProcess implements Runnable {
 		alertMax = Integer.parseInt(alertMax1);
 		alertSrcType=srcType;
 		if (alertSrcType.equals("Q")){
-			alertEmagePath = Config.getProperty("queryJsonLoc") + "Q" + alertSrcId + ".json";
+			alertEmagePath = QUERY_JSON_LOC + "Q" + alertSrcId + ".json";
 
 		}else if (alertSrcType.equals("ds")){
-			alertEmagePath = Config.getProperty("datasourceJsonLoc") + alertSrcId + ".json";
+			alertEmagePath = DS_JSON_LOC + alertSrcId + ".json";
 		}
 
 		alertSolId= alertSolId1;
@@ -199,10 +200,10 @@ public class AlertProcess implements Runnable {
 		alertSolType = solSrcType;
 
 		if(alertSolType.equals("Q")){
-			solEmagePath = Config.getProperty("queryJsonLoc") + "Q" + alertSolId + ".json";
+			solEmagePath = QUERY_JSON_LOC + "Q" + alertSolId + ".json";
 		}
 		else if(alertSolType.equals("ds")){
-			solEmagePath = Config.getProperty("datasourceJsonLoc")+alertSolId+".json";
+			solEmagePath = DS_JSON_LOC +alertSolId+".json";
 		}
 		boundingbox=this.boundingbox;
 

@@ -1,6 +1,7 @@
 package com.eventshop.eventshoplinux.camel;
 
 import com.eventshop.eventshoplinux.DAO.alert.AlertDAO;
+import com.eventshop.eventshoplinux.constant.Constant;
 import com.eventshop.eventshoplinux.model.Alert;
 import com.eventshop.eventshoplinux.model.AlertResponse;
 import com.eventshop.eventshoplinux.model.EnableAlert;
@@ -80,10 +81,10 @@ public class AlertRoute extends RouteBuilder {
                                 int type = Integer.parseInt(alert.getAlertType());
                                 if (type == 2) {
                                     if (alertSource.startsWith("ds")) {
-                                        alertSourceFilename = Config.getProperty("tempDir") + "ds/" + alertSource.substring(2) + ".json";
+                                        alertSourceFilename = Constant.TEMP_DIR + "ds/" + alertSource.substring(2) + ".json";
 
                                     } else if (alertSource.startsWith("Q")) {
-                                        alertSourceFilename = Config.getProperty("tempDir") + "queries/" + alertSource + ".json";
+                                        alertSourceFilename = Constant.TEMP_DIR+ "queries/" + alertSource + ".json";
                                     }
                                     if (!alertSourceFilename.isEmpty()) {
                                         if (new File(alertSourceFilename).exists()) {
@@ -95,16 +96,16 @@ public class AlertRoute extends RouteBuilder {
                                     String safeSource = alert.getSafeSource();
 
                                     if (alertSource.startsWith("ds")) {
-                                        alertSourceFilename = Config.getProperty("tempDir") + "ds/" + alertSource.substring(2) + ".json";
+                                        alertSourceFilename = Constant.TEMP_DIR + "ds/" + alertSource.substring(2) + ".json";
 
                                     } else if (alertSource.startsWith("Q")) {
-                                        alertSourceFilename = Config.getProperty("tempDir") + "queries/" + alertSource + ".json";
+                                        alertSourceFilename = Constant.TEMP_DIR + "queries/" + alertSource + ".json";
                                     }
                                     if (safeSource.startsWith("ds")) {
-                                        safeSourceFilename = Config.getProperty("tempDir") + "ds/" + safeSource.substring(2) + ".json";
+                                        safeSourceFilename = Constant.TEMP_DIR + "ds/" + safeSource.substring(2) + ".json";
 
                                     } else if (safeSource.startsWith("Q")) {
-                                        safeSourceFilename = Config.getProperty("tempDir") + "queries/" + safeSource + ".json";
+                                        safeSourceFilename = Constant.TEMP_DIR + "queries/" + safeSource + ".json";
                                     }
 
                                     if ((!alertSourceFilename.isEmpty()) && (!safeSourceFilename.isEmpty())) {
@@ -153,17 +154,17 @@ public class AlertRoute extends RouteBuilder {
                             File solutionFile = null;
 
                             if (alertSrc.startsWith("Q") || alertSrc.startsWith("q")) {
-                                file = new File(Config.getProperty("tempDir") + "queries/Q" + alertSrc.substring(1) + ".json");
+                                file = new File(Constant.TEMP_DIR + "queries/Q" + alertSrc.substring(1) + ".json");
                             } else if (alertSrc.startsWith("ds")) {
-                                file = new File(Config.getProperty("tempDir") + "ds/" + alertSrc.substring(2) + ".json");
+                                file = new File(Constant.TEMP_DIR + "ds/" + alertSrc.substring(2) + ".json");
 
                             }
                             String safeSrc = alert.get("safeSrc");
                             if (safeSrc.startsWith("Q") || safeSrc.startsWith("q")) {
-                                solutionFile = new File(Config.getProperty("tempDir") + "queries/Q" + safeSrc.substring(1) + ".json");
+                                solutionFile = new File(Constant.TEMP_DIR + "queries/Q" + safeSrc.substring(1) + ".json");
 
                             } else if (alertSrc.startsWith("ds")) {
-                                solutionFile = new File(Config.getProperty("tempDir") + "ds/" + safeSrc.substring(2) + ".json");
+                                solutionFile = new File(Constant.TEMP_DIR + "ds/" + safeSrc.substring(2) + ".json");
                             }
                             try {
                                 String content = new Scanner(file).useDelimiter("\\Z").next();
@@ -199,11 +200,11 @@ public class AlertRoute extends RouteBuilder {
                                 String type = null;
 
                                 if (alertSrc.startsWith("Q") || alertSrc.startsWith("q")) {
-                                    file = new File(Config.getProperty("tempDir") + "queries/Q" + alertSrc.substring(1) + ".json");
+                                    file = new File(Constant.TEMP_DIR + "queries/Q" + alertSrc.substring(1) + ".json");
                                     type = "Q";
                                 } else if (alertSrc.startsWith("ds")) {
                                     type = "ds";
-                                    file = new File(Config.getProperty("tempDir") + "ds/" + alertSrc.substring(2) + ".json");
+                                    file = new File(Constant.TEMP_DIR + "ds/" + alertSrc.substring(2) + ".json");
                                 }
                                 String content = new Scanner(file).useDelimiter("\\Z").next();
                                 JsonParser jsonParser = new JsonParser();

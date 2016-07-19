@@ -20,6 +20,8 @@ import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.IOException;
 
+import static com.eventshop.eventshoplinux.constant.Constant.DS_JSON_LOC;
+
 /**
  * Created by aravindh on 10/8/15.
  */
@@ -32,7 +34,7 @@ public class EmageWebService {
     public String getEmageLayer(EmageLayer emageLayer) {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            Emage emage = mapper.readValue(new File(Config.getProperty("datasourceJsonLoc")+emageLayer.getDatasourceId()+"_layer"+emageLayer.getLayer()+".json"), Emage.class);
+            Emage emage = mapper.readValue(new File(DS_JSON_LOC+emageLayer.getDatasourceId()+"_layer"+emageLayer.getLayer()+".json"), Emage.class);
            // return emage.toString();
             double swlat=emage.getSwLat();
             double swlong =emage.getSwLong();

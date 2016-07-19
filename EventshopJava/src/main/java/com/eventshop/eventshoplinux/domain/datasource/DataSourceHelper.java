@@ -55,7 +55,7 @@ public class DataSourceHelper {
 		DataFormat format = src.srcFormat;
 
 		String imgBasePath = Config.getProperty(CONTEXT) + RESULT_DS;
-		String tempDir = Config.getProperty(TEMPDIR);
+		String tempDir = TEMP_DIR;
 		if (format == DataFormat.stream) {
 			Wrapper wrapper = null;
 			if (src.supportedWrapper.equals(TWITTER)) {

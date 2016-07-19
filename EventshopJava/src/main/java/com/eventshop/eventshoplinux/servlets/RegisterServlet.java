@@ -27,6 +27,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.eventshop.eventshoplinux.constant.Constant.TEMP_DIR;
 import static com.eventshop.eventshoplinux.constant.Constant.UNDERSCORE;
 import static com.eventshop.eventshoplinux.constant.Constant.json;
 
@@ -68,7 +69,7 @@ public class RegisterServlet extends HttpServlet {
 	public void init() {
 		log.info("registerservlet init is called");
 		context = Config.getProperty("context");
-		tempDir = Config.getProperty("tempDir");
+		tempDir = TEMP_DIR;
 		preRegisterDataSourcesQueries();
 		DataCache.updateRegisteredSources();
 	}
@@ -78,7 +79,7 @@ public class RegisterServlet extends HttpServlet {
 		log.info("registerservlet final init is called");
 		context = Config.getProperty("context");
 		log.info(context);
-		tempDir = Config.getProperty("tempDir");
+		tempDir = TEMP_DIR;
 //		AkkaActorSystem
 		actorSystem = (ActorSystem) config.getServletContext().getAttribute("AkkaActorSystem");
 		dataSourceSchedularActor = actorSystem.actorSelection("akka://eventshop-actorSystem/user/dataSourceSchedularActor");

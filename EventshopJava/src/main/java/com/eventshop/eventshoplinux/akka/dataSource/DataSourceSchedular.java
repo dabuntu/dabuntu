@@ -7,6 +7,7 @@ import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import com.eventshop.eventshoplinux.DAO.datasource.DataSourceManagementDAO;
 import com.eventshop.eventshoplinux.DataCache;
+import com.eventshop.eventshoplinux.constant.Constant;
 import com.eventshop.eventshoplinux.domain.datasource.DataSource;
 import com.eventshop.eventshoplinux.util.commonUtil.Config;
 import org.slf4j.Logger;
@@ -146,11 +147,11 @@ public class DataSourceSchedular extends UntypedActor {
             dataSourceManagementDAO.disableDataSource(stopDataSourceId);
 
             //Delete files
-            File file = new File(Config.getProperty("tempDir") + "ds/" + stopDataSourceId + ".json");
+            File file = new File(Constant.TEMP_DIR + "ds/" + stopDataSourceId + ".json");
             if (file.exists()) {
                 file.delete();
             }
-            file = new File(Config.getProperty("tempDir") + "ds" + stopDataSourceId);
+            file = new File(Constant.TEMP_DIR + "ds" + stopDataSourceId);
 
             if (file.exists()) {
                 file.delete();

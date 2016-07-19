@@ -58,7 +58,7 @@ public class QueryJSONParser {
 	// newQuery = null;
 	// servlet = new RegisterServlet();
 	//
-	// String tempDir = Config.getProperty("tempDir");
+	// String tempDir = Constant.TEMP_DIR;
 	// //servlet.init();
 	//
 	// }

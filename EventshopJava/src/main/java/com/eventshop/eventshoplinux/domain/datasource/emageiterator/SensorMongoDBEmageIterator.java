@@ -44,6 +44,8 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.net.URL;
 
+import static com.eventshop.eventshoplinux.constant.Constant.TEMP_DIR;
+
 public class SensorMongoDBEmageIterator extends EmageIterator {
 	protected static Log log = LogFactory
 			.getLog(SensorMongoDBEmageIterator.class);
@@ -476,7 +478,7 @@ public class SensorMongoDBEmageIterator extends EmageIterator {
 			DataSource src = new DataSource(id, theme, name, url, format,
 					supported, null, null, fpSoCal, null);
 
-			String tempDir = Config.getProperty("tempDir");
+			String tempDir = TEMP_DIR;
 			String filepath = tempDir + "/ds" + src.srcID + "_" + src.srcName;
 			String imgBasePath = tempDir + Constant.RESULT_DS;
 

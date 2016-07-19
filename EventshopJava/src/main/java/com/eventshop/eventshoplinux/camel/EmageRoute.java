@@ -1,5 +1,6 @@
 package com.eventshop.eventshoplinux.camel;
 
+import com.eventshop.eventshoplinux.constant.Constant;
 import com.eventshop.eventshoplinux.domain.datasource.DataSource;
 import com.eventshop.eventshoplinux.model.Emage;
 import com.eventshop.eventshoplinux.util.commonUtil.Config;
@@ -17,6 +18,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.eventshop.eventshoplinux.constant.Constant.DS_JSON_LOC;
 
 /**
  * Created by aravindh on 5/13/15.
@@ -67,19 +70,27 @@ public class EmageRoute extends RouteBuilder{
 
                                  }
                                  emage.setImage(image);
+                                 System.out.println("image length:"  +emage.getImage().length);
                                  Double min = 999999.9;
                                  Double max = 0.0;
-                                 for (int i = 0; i < values.size(); i++) {
-                                     if (Double.parseDouble(values.get(i).toString()) < min) {
-                                         min = Double.parseDouble(values.get(i).toString());
-                                     }
-                                     if (Double.parseDouble(values.get(i).toString()) > max) {
-                                         max = Double.parseDouble(values.get(i).toString());
+                                 // in case of empty value (image lenght = 0)
+                                 if(values.size() == 0){
+                                     min = 0.0;
+                                     max = 0.0;
+                                 } else {
+                                     for (int i = 0; i < values.size(); i++) {
+                                         if (Double.parseDouble(values.get(i).toString()) < min) {
+                                             min = Double.parseDouble(values.get(i).toString());
+                                         }
+                                         if (Double.parseDouble(values.get(i).toString()) > max) {
+                                             max = Double.parseDouble(values.get(i).toString());
+                                         }
                                      }
                                  }
 
                                  emage.setMin(min);
                                  emage.setMax(max);
+                                 System.out.println("min/max:"  + emage.getMin() + "/" + emage.getMax());
 
                                  long endTime = (long) Math.ceil(System.currentTimeMillis() / dataSource.getInitParam().getTimeWindow()) * dataSource.getInitParam().getTimeWindow() + dataSource.getInitParam().getSyncAtMilSec();
                                  Date startTimeStr = new Date(endTime - dataSource.getInitParam().getTimeWindow());
@@ -94,7 +105,7 @@ public class EmageRoute extends RouteBuilder{
                                  exchange.getOut().setBody(emage);
 
                                  exchange.getOut().setHeader("dsID", dataSource.getSrcID());
-                                 String filepath = Config.getProperty("tempDir") + "ds" + dataSource.getSrcID();
+                                 String filepath = Constant.TEMP_DIR + "ds" + dataSource.getSrcID();
 
                                  exchange.getOut().setHeader("filepath", filepath);
                                  exchange.getOut().setHeader("createEmageFile", exchange.getIn().getHeader("createEmageFile"));
@@ -127,12 +138,20 @@ public class EmageRoute extends RouteBuilder{
                                  int cols = dataSource.getInitParam().getNumOfColumns();
                                  System.out.println("Initial Cols: "+cols);
                                  double[][] image2D = new double[rows][cols];
-                                 double[] image1 = emage.getImage();
+                                 //double[] image1 = emage.getImage();
                                  cnt=0;
-                                 for(int i=0;i<rows;i++){
-                                     for(int j=0;j<cols;j++){
-                                         image2D[i][j]=image1[cnt];
-                                         cnt++;
+                                 if(image.length == 0){
+                                     for (int i = 0; i < rows; i++) {
+                                         for (int j = 0; j < cols; j++) {
+                                             image2D[i][j] = 0;
+                                         }
+                                     }
+                                 } else {
+                                     for (int i = 0; i < rows; i++) {
+                                         for (int j = 0; j < cols; j++) {
+                                             image2D[i][j] = image[cnt];
+                                             cnt++;
+                                         }
                                      }
                                  }
                                  double[][] temp2DLayer = new double[(int)(Math.ceil(rows/zoomValue))][(int)Math.ceil(cols/zoomValue)];
@@ -226,9 +245,9 @@ public class EmageRoute extends RouteBuilder{
                                          if(!file.exists()) {
                                              file.createNewFile();
                                          }
-                                         mapper.writeValue(new File(Config.getProperty("datasourceJsonLoc") + dsIDFilename), emg);
+                                         mapper.writeValue(new File(DS_JSON_LOC + dsIDFilename), emg);
                                      } else {
-                                         mapper.writeValue(new File(Config.getProperty("datasourceJsonLoc") + exchange.getIn().getHeader("dsID") + "_layer" + emageLayerCnt + ".json"), emg);
+                                         mapper.writeValue(new File(DS_JSON_LOC + exchange.getIn().getHeader("dsID") + "_layer" + emageLayerCnt + ".json"), emg);
                                      }
                                      System.out.println("Done Writting layer"+emageLayerCnt);
 
@@ -343,7 +362,7 @@ public class EmageRoute extends RouteBuilder{
 //                                int emageLayerCnt=0;
 //                                for(Emage emg : emageList){
 //                                    ObjectMapper mapper = new ObjectMapper();
-//                                    mapper.writeValue(new File(Config.getProperty("datasourceJsonLoc")+exchange.getIn().getHeader("dsID")+"_layer"+emageLayerCnt+".json"), emg);
+//                                    mapper.writeValue(new File(DS_JSON_LOC+exchange.getIn().getHeader("dsID")+"_layer"+emageLayerCnt+".json"), emg);
 //                                    System.out.println("Done Writting layer"+emageLayerCnt);
 //                                    emageLayerCnt++;
 //
@@ -364,7 +383,7 @@ public class EmageRoute extends RouteBuilder{
                         LOGGER.info("Done...");
                     }
                 })
-                .to("file:" + Config.getProperty("datasourceJsonLoc") + "?noop=true&charset=iso-8859-1")
+                .to("file:" + DS_JSON_LOC + "?noop=true&charset=iso-8859-1")
                 .process(new Processor() {
                     @Override
                     public void process(Exchange exchange) throws Exception {
@@ -427,7 +446,7 @@ public class EmageRoute extends RouteBuilder{
 //                                } catch (IOException e1) {
 //                                    log.error(e1.getMessage());
 //                                }
-//                                String filepath = Config.getProperty("tempDir") + "ds" + exchange.getIn().getHeader("dsID");
+//                                String filepath = Constant.TEMP_DIR + "ds" + exchange.getIn().getHeader("dsID");
 //                                FileOutputStream output = null;
 //                                try {
 //                                    output = new FileOutputStream(filepath);
@@ -461,7 +480,7 @@ public class EmageRoute extends RouteBuilder{
 //                ;
 
 
-//                .to("file:" + Config.getProperty("tempDir") + "?noop=true&charset=iso-8859-1");
+//                .to("file:" + Constant.TEMP_DIR + "?noop=true&charset=iso-8859-1");
     }
 
     private double applySpatialOperations(double[] tempElements, String spatialWrapper) {

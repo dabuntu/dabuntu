@@ -21,9 +21,9 @@ public class SystemUtilities {
 	private static final String TASKLIST = "tasklist";
 	private static final String KILL = "taskkill /IM ";
 	private static final String PROCESS = "EmageOperators_q";
-	private static final String QUERYSTORE = Config.getProperty("tempDir")
+	private static final String QUERYSTORE = Constant.TEMP_DIR
 			+ "/query/";
-	private static final String DATASTORE = Config.getProperty("tempDir")
+	private static final String DATASTORE = Constant.TEMP_DIR
 			+ "/datasource/";
 	private static final String CONTEXTPATH = Config.getProperty("context");
 

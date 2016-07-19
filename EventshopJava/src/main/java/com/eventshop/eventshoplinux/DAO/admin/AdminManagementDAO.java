@@ -258,7 +258,6 @@ public class AdminManagementDAO extends BaseDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		DataSourceListElement dsElement = null;
-		String tempDir = Config.getProperty(TEMPDIR);
 		String qrySql = SELECT_DSMSTR_DSRES_QRY;
 		try {
 			ps = connection.prepareStatement(qrySql);
@@ -272,7 +271,7 @@ public class AdminManagementDAO extends BaseDAO {
 				dsElement.setFormat(rs.getString(4));
 				// String filepath = tempDir + PATH_DS + dsElement.getSrcID() +
 				// UNDERSCORE + rs.getString(5);
-				String filepath = tempDir + "ds" + dsElement.getSrcID() + json;
+				String filepath = TEMP_DIR + "ds" + dsElement.getSrcID() + json;
 				File file = new File(filepath);
 				boolean exists = file.exists();
 
@@ -630,11 +629,10 @@ public class AdminManagementDAO extends BaseDAO {
 					ArrayList<String> bagofWords = new ArrayList<String>();
 					bagofWords.addAll(Arrays.asList(bag_of_words));
 					dsrc.setBagOfWords(bagofWords);
-					String tempDir = Config.getProperty(TEMPDIR);
 					if (VISUAL.equals(res.getString(4))) {
-						String filepathTransMatrix = tempDir + PATH_DS + dsId
+						String filepathTransMatrix = TEMP_DIR + PATH_DS + dsId
 								+ UNDERSCORE + TRANSMATRIX; // wrong path
-						String filepathColorsMatrx = tempDir + PATH_DS + dsId
+						String filepathColorsMatrx = TEMP_DIR + PATH_DS + dsId
 								+ UNDERSCORE + COLRSMATRIX; // wrong path
 
 						dsrc.visualParam.setTranMatPath(filepathTransMatrix);

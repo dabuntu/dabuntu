@@ -391,7 +391,7 @@ public class AlertProcessor {
 	public void writeToFile(String msg) {
 		try {
 			// Create file /
-			FileWriter fstream = new FileWriter(Config.getProperty("tempDir")
+			FileWriter fstream = new FileWriter(Constant.TEMP_DIR
 					+ "file_log.txt", true);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.write(msg + "\n");

@@ -61,7 +61,7 @@ public class QueryProcess implements Runnable {
 		contextPath = context;
 		if (contextPath == "")
 			contextPath = Config.getProperty("context");
-		dataFolderPath = Config.getProperty("tempDir");
+		dataFolderPath = Constant.TEMP_DIR;
 
 		queriedSources = new ArrayList<DataSource>();
 		queryCC = new ArrayList<String>();

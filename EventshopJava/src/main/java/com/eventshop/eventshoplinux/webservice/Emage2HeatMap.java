@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.eventshop.eventshoplinux.constant.Constant.QUERY_JSON_LOC;
+
 /**
  * Created by aravindh on 11/26/15.
  */
@@ -32,7 +34,7 @@ public class Emage2HeatMap {
         List<STT> sttList = new ArrayList<STT>();
 
         try {
-            Emage emage = mapper.readValue(new File(Config.getProperty("queryJsonLoc")+"Q"+id+".json"), Emage.class);
+            Emage emage = mapper.readValue(new File(QUERY_JSON_LOC+"Q"+id+".json"), Emage.class);
 
             double nelat = emage.getNeLat();
             double nelong = emage.getNeLong();
