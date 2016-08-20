@@ -44,3 +44,23 @@ https://github.com/dabuntu/es/tree/master/EventshopJava/src/main/resources/Sql
 The installation setup and a detailed description is available in the Wiki
 
 https://github.com/dabuntu/es/wiki
+
+##Steps:
+1.create a database called dbeventshop in mysql
+create database dbeventshop;
+2.Apply db SQL script.
+sudo mysql -uroot -proot dbeventshop < dbeventshop.sql
+This sql file is a part of code set.
+The following steps from Step3 until Step 6 can be seen from the last 2 videos "Setting up Eventshop on local" on https://www.youtube.com/playlist?list=PL2sIMyXzRPMIwUwXGwWdB5IiGMJITvn4-
+3.Download the code from repository.
+4.Import the project as maven project.
+5.Download maven dependencies.
+6.Build the project.
+7.Start Zookeeper Server on port 2181 ( default port, can be changed) .
+8. Start Kafka Server on port 9092 ( default port, can be changed).
+See here:http://kafka.apache.org/07/quickstart.html
+(Only until Step 2).
+9. Run the jetty server and observe the console 
+10. Type this url on your browser:
+Assuming localhost's port number is 8085
+localhost:8085/eventshoplinux/
